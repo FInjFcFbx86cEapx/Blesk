@@ -35,22 +35,22 @@
   </section>
 
   <section id="services" class="services container">
-      <h2>Наши услуги</h2>
-      <ul>
-          <li>Профилактический осмотр</li>
-          <li>Рентгенография</li>
-          <li>Инъекции</li>
-          <li>Анестезия</li>
-          <li>Гигиена полости рта</li>
-          <li>Покрытие фторлаком</li>
-          <li>Лечение кариеса</li>
-          <li>Реставрация зубов</li>
-          <li>Эндодонтическое лечение</li>
-          <li>Ортопедические услуги</li>
-          <li>Протезирование</li>
-          <li>Хирургические услуги</li>
-          <li>Имплантация</li>
-      </ul>
+    <h2>Наши услуги</h2>
+    <ul>
+      <li>Профилактический осмотр</li>
+      <li>Рентгенография</li>
+      <li>Инъекции</li>
+      <li>Анестезия</li>
+      <li>Гигиена полости рта</li>
+      <li>Покрытие фторлаком</li>
+      <li>Лечение кариеса</li>
+      <li>Реставрация зубов</li>
+      <li>Эндодонтическое лечение</li>
+      <li>Ортопедические услуги</li>
+      <li>Протезирование</li>
+      <li>Хирургические услуги</li>
+      <li>Имплантация</li>
+    </ul>
   </section>
 
   <section id="price" class="price container">
@@ -64,7 +64,7 @@
         header: true,
         complete: function(results) {
           const data = results.data;
-          const container = document.getElementById('table-container');
+          const container = document.getElementById('price-table-container');
 
           if (data.length === 0) {
             container.innerHTML = 'Нет данных';
