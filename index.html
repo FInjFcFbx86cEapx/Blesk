@@ -15,6 +15,7 @@
         <ul>
           <li><a href="#about">О нас</a></li>
           <li><a href="#services">Услуги</a></li>
+          <li><a href="#price">Цены</a></li>
           <li><a href="#contact">Контакты</a></li>
         </ul>
       </nav>
@@ -34,53 +35,74 @@
   </section>
 
   <section id="services" class="services container">
-    <h2>Наши услуги</h2>
-    <ul>
-      <li>Терапевтическая стоматология</li>
-      <li>Профессиональная чистка и гигиена</li>
-      <li>Протезирование и имплантация</li>
-      <li>Эстетическая стоматология</li>
-      <li>Исправление прикуса</li>
-    </ul>
+      <h2>Наши услуги</h2>
+      <ul>
+          <li>Профилактический осмотр</li>
+          <li>Рентгенография</li>
+          <li>Инъекции</li>
+          <li>Анестезия</li>
+          <li>Гигиена полости рта</li>
+          <li>Покрытие фторлаком</li>
+          <li>Лечение кариеса</li>
+          <li>Реставрация зубов</li>
+          <li>Эндодонтическое лечение</li>
+          <li>Ортопедические услуги</li>
+          <li>Протезирование</li>
+          <li>Хирургические услуги</li>
+          <li>Имплантация</li>
+      </ul>
   </section>
 
   <section id="price" class="price container">
     <h2>Цены на услуги</h2>
     <div id="price-table-container">Загрузка...</div>
     <script>
-        const csvUrl = 'price.csv';
+      const csvUrl = 'price.csv';
 
-        Papa.parse(csvUrl, {
-          download: true,
-          header: true,
-          complete: function(results) {
-            const data = results.data;
-            const container = document.getElementById('price-table-container');
+      Papa.parse(csvUrl, {
+        download: true,
+        header: true,
+        complete: function(results) {
+          const data = results.data;
+          const container = document.getElementById('table-container');
 
-            if (data.length === 0) {
-              container.innerHTML = 'Нет данных';
-              return;
-            }
-
-            let html = '<table><thead><tr>';
-            Object.keys(data[0]).forEach(key => {
-              html += `<th>${key}</th>`;
-            });
-            html += '</tr></thead><tbody>';
-
-            data.forEach(row => {
-              html += '<tr>';
-              Object.values(row).forEach(value => {
-                html += `<td>${value}</td>`;
-              });
-              html += '</tr>';
-            });
-
-            html += '</tbody></table>';
-            container.innerHTML = html;
+          if (data.length === 0) {
+            container.innerHTML = 'Нет данных';
+            return;
           }
-        });
-      </script>
+
+          const allKeys = Object.keys(data[0]);
+          const selectedIndices = [0, 1, 3, 5, 9];
+
+          const customHeaders = [
+            "Наименование",
+            "Цена, руб.",
+            "Единица",
+            "Категория",
+            "Описание"
+          ];
+
+          const selectedKeys = selectedIndices.map(i => allKeys[i]);
+
+          let html = '<table><thead><tr>';
+          customHeaders.forEach(header => {
+            html += `<th>${header}</th>`;
+          });
+          html += '</tr></thead><tbody>';
+
+          data.forEach(row => {
+            html += '<tr>';
+            selectedKeys.forEach(key => {
+              html += `<td>${row[key] || ''}</td>`;
+            });
+            html += '</tr>';
+          });
+
+          html += '</tbody></table>';
+          container.innerHTML = html;
+        }
+      });
+    </script>
   </section>
 
   <section id="contact" class="contact container">
