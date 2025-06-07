@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Стоматология Блеск — Абакан</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="papaparse.min.js"></script>
 </head>
 <body>
   <header>
@@ -41,6 +42,45 @@
       <li>Эстетическая стоматология</li>
       <li>Исправление прикуса</li>
     </ul>
+  </section>
+
+  <section id="price" class="price container">
+    <h2>Цены на услуги</h2>
+    <div id="price-table-container">Загрузка...</div>
+    <script>
+        const csvUrl = 'price.csv';
+
+        Papa.parse(csvUrl, {
+          download: true,
+          header: true,
+          complete: function(results) {
+            const data = results.data;
+            const container = document.getElementById('price-table-container');
+
+            if (data.length === 0) {
+              container.innerHTML = 'Нет данных';
+              return;
+            }
+
+            let html = '<table><thead><tr>';
+            Object.keys(data[0]).forEach(key => {
+              html += `<th>${key}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            data.forEach(row => {
+              html += '<tr>';
+              Object.values(row).forEach(value => {
+                html += `<td>${value}</td>`;
+              });
+              html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+          }
+        });
+      </script>
   </section>
 
   <section id="contact" class="contact container">
