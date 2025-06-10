@@ -1,3 +1,41 @@
+:root {
+  /* Светлая тема (по умолчанию) */
+  --color-primary: #256fde;
+  --color-primary-light: #e4efff;
+  --color-primary-dark: #1f5bc0;
+  --color-accent: #ff9d00;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #fdfdfd;
+  --color-bg-alt: #f0f8ff;
+  --color-border: #cccccc;
+  --color-link: #004080;
+  --color-price-old: #999999;
+  --color-price-discount: #256fde;
+  --color-footer-bg: #f0f0f0;
+  --color-shadow: rgba(0,0,0,0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #4a76c9;
+    --color-primary-light: #333333;
+    --color-primary-dark: #8ab4f8;
+    --color-accent: #ffb84d;
+    --color-text: #dddcdc;
+    --color-text-light: #aaa9a9;
+    --color-bg: #121212;
+    --color-bg-alt: #1e1e1e;
+    --color-border: #333333;
+    --color-link: #8ab4f8;
+    --color-price-old: #999999;
+    --color-price-discount: #50bfa5;
+    --color-footer-bg: #1a1a1a;
+    --color-shadow: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Далее общие стили без изменений */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +45,12 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  background-color: #fdfdfd;
-  color: #333;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+blockquote {
+  font-style: italic;
 }
 
 .container {
@@ -19,7 +61,7 @@ body {
 }
 
 header {
-  background-color: #004080;
+  background-color: var(--color-primary);
   color: #fff;
   padding: 20px 0;
 }
@@ -47,9 +89,14 @@ nav a:hover {
 }
 
 .hero {
-  background-color: #eaf3ff;
+  background-color: var(--color-primary-light);
   padding: 40px 0;
   text-align: center;
+}
+
+.hero h2,
+.hero p {
+  color: var(--color-primary-dark);
 }
 
 .hero h2 {
@@ -64,7 +111,7 @@ nav a:hover {
 section h2 {
   font-size: 1.6rem;
   margin-bottom: 10px;
-  color: #004080;
+  color: var(--color-primary);
 }
 
 ul {
@@ -80,23 +127,43 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  box-shadow: 0 0 5px var(--color-shadow);
+  transition: background-color 0.3s ease;
 }
 
-table th, table td {
-  border: 1px solid #ccc;
+table th,
+table td {
+  border: 1px solid var(--color-border);
   padding: 10px;
   text-align: left;
 }
 
 table th {
-  background-color: #f0f8ff;
+  background-color: var(--color-bg-alt);
   font-weight: bold;
 }
 
+.category-title {
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  font-weight: 600;
+}
+
+.price-discount {
+  color: var(--color-price-discount);
+}
+
+.price-old {
+  color: var(--color-price-old);
+  margin-left: 8px;
+  text-decoration: line-through;
+}
+
 .contact a {
-  color: #004080;
+  color: var(--color-link);
   text-decoration: none;
 }
 
@@ -104,13 +171,20 @@ table th {
   text-decoration: underline;
 }
 
+.stars {
+  color: var(--color-accent);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 footer {
-  background-color: #f0f0f0;
-  color: #666;
+  background-color: var(--color-footer-bg);
+  color: var(--color-text-light);
   text-align: center;
   padding: 15px 0;
   font-size: 0.9rem;
   margin-top: 30px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media (max-width: 600px) {
@@ -119,7 +193,8 @@ footer {
     align-items: flex-start;
   }
 
-  table th, table td {
+  table th,
+  table td {
     font-size: 0.9rem;
   }
 }
