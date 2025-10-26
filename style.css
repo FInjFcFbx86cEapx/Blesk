@@ -1,41 +1,39 @@
 :root {
-  /* Светлая тема (по умолчанию) */
-  --color-primary: #256fde;
-  --color-primary-light: #e4efff;
-  --color-primary-dark: #1f5bc0;
-  --color-accent: #ff9d00;
-  --color-text: #333333;
-  --color-text-light: #666666;
-  --color-bg: #fdfdfd;
-  --color-bg-alt: #f0f8ff;
-  --color-border: #cccccc;
-  --color-link: #004080;
-  --color-price-old: #999999;
-  --color-price-discount: #256fde;
-  --color-footer-bg: #f0f0f0;
-  --color-shadow: rgba(0,0,0,0.05);
+  --color-primary: #3b82f6;          /* яркий, но не кислотный синий */
+  --color-primary-light: #eaf3ff;    /* нежно-голубой фон */
+  --color-primary-dark: #1e60d0;     /* немного глубже для контраста */
+  --color-accent: #ffb84d;           /* тёплый солнечный акцент */
+  --color-text: #2b2b2b;             /* чуть мягче, чем чисто чёрный */
+  --color-text-light: #555555;
+  --color-bg: #ffffff;               /* чистый светлый фон */
+  --color-bg-alt: #f5f9ff;           /* слегка голубоватый, освежающий */
+  --color-border: #d0d7e2;           /* светло-серый с холодным оттенком */
+  --color-link: #0056cc;
+  --color-price-old: #9a9a9a;
+  --color-price-discount: #2d8b5f;   /* зелёно-бирюзовый — символ выгоды */
+  --color-footer-bg: #f8f8fc;        /* едва заметный фон */
+  --color-shadow: rgba(0, 0, 0, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #4a76c9;
-    --color-primary-light: #333333;
-    --color-primary-dark: #8ab4f8;
-    --color-accent: #ffb84d;
-    --color-text: #dddcdc;
-    --color-text-light: #aaa9a9;
-    --color-bg: #121212;
-    --color-bg-alt: #1e1e1e;
-    --color-border: #333333;
-    --color-link: #8ab4f8;
-    --color-price-old: #999999;
-    --color-price-discount: #50bfa5;
-    --color-footer-bg: #1a1a1a;
-    --color-shadow: rgba(255, 255, 255, 0.1);
+    --color-primary: #82aaff;        /* мягкий голубой */
+    --color-primary-light: #2a2e3a;  /* фон слегка графитовый, не чёрный */
+    --color-primary-dark: #aac8ff;
+    --color-accent: #ffd580;         /* тёплый золотистый */
+    --color-text: #f0f0f0;
+    --color-text-light: #cfcfcf;
+    --color-bg: #1d1f27;             /* глубокий, но не чёрный */
+    --color-bg-alt: #272b35;
+    --color-border: #3a3f4a;
+    --color-link: #9fc9ff;
+    --color-price-old: #aaaaaa;
+    --color-price-discount: #80e0b0; /* мятно-зелёный акцент */
+    --color-footer-bg: #232631;
+    --color-shadow: rgba(255, 255, 255, 0.05);
   }
 }
 
-/* Далее общие стили без изменений */
 * {
   margin: 0;
   padding: 0;
@@ -129,6 +127,7 @@ table {
   margin-top: 20px;
   box-shadow: 0 0 5px var(--color-shadow);
   transition: background-color 0.3s ease;
+  table-layout: fixed;
 }
 
 table th,
@@ -136,11 +135,27 @@ table td {
   border: 1px solid var(--color-border);
   padding: 10px;
   text-align: left;
+  overflow-wrap: normal;
+  hyphens: auto;                /* Включает переносы */
+  -webkit-hyphens: auto;        /* Safari / iOS */
+  -ms-hyphens: auto;            /* Старые Edge */
+  word-break: normal;           /* чтобы не ломал слова где попало */
 }
 
 table th {
   background-color: var(--color-bg-alt);
   font-weight: bold;
+  text-align: center;
+  overflow-wrap: break-word; /* перенос длинных слов */
+  hyphens: auto;             /* перенос по правилам русского языка */
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  white-space: normal;       /* разрешаем перенос строк */
+}
+
+table td:nth-child(3),
+table td:nth-child(4) {
+  text-align: center;
 }
 
 .category-title {
@@ -196,5 +211,26 @@ footer {
   table th,
   table td {
     font-size: 0.9rem;
+  }
+
+  table th:nth-child(1),
+  table td:nth-child(1) {
+    width: 35%; /* Наименование */
+  }
+
+  table th:nth-child(2),
+  table td:nth-child(2) {
+    width: 25%; /* Описание */
+  }
+
+  table th:nth-child(3),
+  table td:nth-child(3) {
+    width: 25%; /* Цена */
+  }
+
+  table th:nth-child(4),
+  table td:nth-child(4) {
+    width: 15%; /* Единица */
+    display: none;
   }
 }
